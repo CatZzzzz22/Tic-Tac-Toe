@@ -3,7 +3,7 @@ Purpose: TicTacToeCZ.py will allow the user to play a Tic-Tac-Toe game
 
 Author: Catherine Zhang
 
-Creation Date:: 04/04/2023
+Creation Date:: 04/06/2020
 
 Edited by: Catherine Zhang, 17/04/2023
 '''
@@ -17,7 +17,7 @@ HEIGHT = 300
 #Starting turn is x
 turn = "X"
 
-#HCreate 9 region
+#Create 9 region
 region1 = Rect((0, 0), (100, 100))
 region2 = Rect((100, 0), (100, 100))
 region3 = Rect((200, 0), (100, 100))
@@ -80,17 +80,12 @@ def draw ():
     #Show the winner statement on the screen
     screen.draw.text( winner, (100, 130), color="green", fontsize = 30)
     
-
-   
-
     
 # Function that is responsible for handling mouse release events
 def on_mouse_up(pos, button):
     if xWin == 0 and oWin == 0:
         global turn, move, s1,s2,s3,s4,s5,s6,s7,s8,s9
-        
-            
-
+       
         #check to see which region has been clicked 
         if turn == "X":
             if region1.collidepoint(pos) and s1 == "":
@@ -120,8 +115,7 @@ def on_mouse_up(pos, button):
             if region9.collidepoint(pos) and s9 == "":
                         s9 = "X"
                         move = "1"
-                        
-                        
+                                  
         #check to see which region has been clicked    
         if turn == "O":
             if region1.collidepoint(pos) and s1 == "":
@@ -151,16 +145,14 @@ def on_mouse_up(pos, button):
             if region9.collidepoint(pos) and s9 == "":
                         s9 = "O"
                         move = "0"
-                        
-                        
+                                 
         #show whose turn it is
         if turn == "X"and move == "1":
             turn = "O"
         elif turn == "O" and move == "0": 
             turn = "X"
-              
-               
-    
+ 
+
 def update():
     global xWin, oWin, winner, s1,s2,s3,s4,s5,s6,s7,s8,s9
     #Determind if X has win
@@ -181,7 +173,6 @@ def update():
     elif s3 == "X"and s5 == "X"and s7 == "X":
         xWin = 1 
         
-    
     #Determind if O has win
     if s1 == "O"and s2 == "O"and s3 == "O":
         oWin = 1
@@ -200,15 +191,16 @@ def update():
     elif s3 == "O"and s5 == "O"and s7 == "O":
         oWin = 1   
         
-        
-
+       
     #When the winning condition is meet, it winner statement will appear
     if xWin == 1:
         winner = "X is the winner"
     elif oWin == 1:
         winner = "O is the winner"
+    elif (s1 != "" and s2 != "" and s3 != "" and s4 != "" and 
+        s5 != "" and s6 != "" and s7 != "" and s8 != ""):
+        winner = "No Winner, Tie!"   
 
-    
 # Runs the Pygame Zero file
 pgzrun.go()   
 
